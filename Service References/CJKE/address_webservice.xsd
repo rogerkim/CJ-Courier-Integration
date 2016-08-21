@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://webservice.address.nplus.doortodoor.co.kr/" targetNamespace="http://webservice.address.nplus.doortodoor.co.kr/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="getAddressInformation" type="tns:getAddressInformation" />
+  <xs:element name="getAddressInformationByValue" type="tns:getAddressInformationByValue" />
+  <xs:element name="getAddressInformationByValue2" type="tns:getAddressInformationByValue2" />
+  <xs:element name="getAddressInformationByValue2Response" type="tns:getAddressInformationByValue2Response" />
+  <xs:element name="getAddressInformationByValue3" type="tns:getAddressInformationByValue3" />
+  <xs:element name="getAddressInformationByValue3Response" type="tns:getAddressInformationByValue3Response" />
+  <xs:element name="getAddressInformationByValueResponse" type="tns:getAddressInformationByValueResponse" />
+  <xs:element name="getAddressInformationResponse" type="tns:getAddressInformationResponse" />
+  <xs:complexType name="getAddressInformationByValue2">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:addressSearchRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addressSearchRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="boxTyp" type="xs:string" />
+      <xs:element minOccurs="0" name="clntMgmCustCd" type="xs:string" />
+      <xs:element minOccurs="0" name="clntNum" type="xs:string" />
+      <xs:element minOccurs="0" name="cntrLarcCd" type="xs:string" />
+      <xs:element minOccurs="0" name="fareDiv" type="xs:string" />
+      <xs:element minOccurs="0" name="orderNo" type="xs:string" />
+      <xs:element minOccurs="0" name="prngDivCd" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="sndprsnAddr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAddressInformationByValue2Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:addressSearchResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addressSearchResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="boxTyp" type="xs:string" />
+      <xs:element minOccurs="0" name="bscFare" type="xs:string" />
+      <xs:element minOccurs="0" name="clntMgmCustCd" type="xs:string" />
+      <xs:element minOccurs="0" name="clntNum" type="xs:string" />
+      <xs:element minOccurs="0" name="cntrLarcCd" type="xs:string" />
+      <xs:element minOccurs="0" name="dealFare" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvClsfCd" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvClsfNm" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvPreArrBranCd" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvPreArrBranNm" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvPreArrBranShortNm" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvPreArrEmpNickNm" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvPreArrEmpNm" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvPreArrEmpNum" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvSubClsfCd" type="xs:string" />
+      <xs:element minOccurs="0" name="errorCd" type="xs:string" />
+      <xs:element minOccurs="0" name="errorMsg" type="xs:string" />
+      <xs:element minOccurs="0" name="fareDiv" type="xs:string" />
+      <xs:element minOccurs="0" name="ferryFare" type="xs:string" />
+      <xs:element minOccurs="0" name="gthClsfCd" type="xs:string" />
+      <xs:element minOccurs="0" name="gthClsfNm" type="xs:string" />
+      <xs:element minOccurs="0" name="gthPreArrBranCd" type="xs:string" />
+      <xs:element minOccurs="0" name="gthPreArrBranNm" type="xs:string" />
+      <xs:element minOccurs="0" name="gthPreArrBranShortNm" type="xs:string" />
+      <xs:element minOccurs="0" name="gthPreArrEmpNickNm" type="xs:string" />
+      <xs:element minOccurs="0" name="gthPreArrEmpNm" type="xs:string" />
+      <xs:element minOccurs="0" name="gthPreArrEmpNum" type="xs:string" />
+      <xs:element minOccurs="0" name="gthSubClsfCd" type="xs:string" />
+      <xs:element minOccurs="0" name="jejuFare" type="xs:string" />
+      <xs:element minOccurs="0" name="orderNo" type="xs:string" />
+      <xs:element minOccurs="0" name="prngDivCd" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrClsfAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrEtcAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrNewAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrNewAddrDtl" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrNewAddrYn" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrOldAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrOldAddrDtl" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrShortAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrZipnum" type="xs:string" />
+      <xs:element minOccurs="0" name="sndprClsfAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="sndprEtcAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="sndprNewAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="sndprNewAddrDtl" type="xs:string" />
+      <xs:element minOccurs="0" name="sndprNewAddrYn" type="xs:string" />
+      <xs:element minOccurs="0" name="sndprOldAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="sndprOldAddrDtl" type="xs:string" />
+      <xs:element minOccurs="0" name="sndprShortAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="sndprZipnum" type="xs:string" />
+      <xs:element minOccurs="0" name="sndprsnAddr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAddressInformationByValue3">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="arg0" type="tns:addressSearchRequest2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addressSearchRequest2">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cgosts" type="xs:string" />
+      <xs:element minOccurs="0" name="clntMgmCustCd" type="xs:string" />
+      <xs:element minOccurs="0" name="clntNum" type="xs:string" />
+      <xs:element minOccurs="0" name="prngDivCd" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrAddr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAddressInformationByValue3Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:addressSearchResponse2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addressSearchResponse2">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cgosts" type="xs:string" />
+      <xs:element minOccurs="0" name="clntMgmCustCd" type="xs:string" />
+      <xs:element minOccurs="0" name="clntNum" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvClsfCd" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvClsfNm" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvPreArrBranCd" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvPreArrBranNm" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvPreArrBranShortNm" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvPreArrEmpNickNm" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvPreArrEmpNm" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvPreArrEmpNum" type="xs:string" />
+      <xs:element minOccurs="0" name="dlvSubClsfCd" type="xs:string" />
+      <xs:element minOccurs="0" name="errorCd" type="xs:string" />
+      <xs:element minOccurs="0" name="errorMsg" type="xs:string" />
+      <xs:element minOccurs="0" name="prngDivCd" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrClsfAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrEtcAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrNewAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrNewAddrDtl" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrNewAddrYn" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrOldAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrOldAddrDtl" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrShortAddr" type="xs:string" />
+      <xs:element minOccurs="0" name="rcvrZipnum" type="xs:string" />
+      <xs:element minOccurs="0" name="rspsDiv" type="xs:string" />
+      <xs:element name="zpid" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAddressInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="arg0" type="tns:addressSearchRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAddressInformationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAddressInformationByValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="arg0" type="tns:addressSearchRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAddressInformationByValueResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:addressSearchResponse" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

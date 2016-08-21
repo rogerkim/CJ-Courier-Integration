@@ -1,0 +1,95 @@
+﻿@model IList<MangoCarrierSystem.Models.MainViewModel>
+
+@if (ViewBag.Message != null)
+{
+    <script>
+        alert("@ViewBag.Message");
+    </script>
+}
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.css" />
+
+<div class="jumbotron">
+    <h1>Step 1.</h1>
+    <p class="lead">&raquo;&nbsp;Import Mango Order.</p>
+    <p>
+        @using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="file" id="btnFile" name="file" class="btn btn-default" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" id="btnSave" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </p>
+</div>
+
+<div>
+    <table id="orders" class="display" cellspacing="0" width:100%>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ORDER</th>
+                <th>FULL_NAME</th>
+                <th>PHONE</th>
+                <th>ZIPCODE</th>
+                <th>LOCATION</th>
+                <th>PROVINCE</th>
+                <th>ADDRESS</th>
+                <th>STATUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.ORDER</td>
+                    <td>@item.FULL_NAME</td>
+                    <td>@item.PHONE</td>
+                    <td>@item.ZIPCODE</td>
+                    <td>@item.LOCATION</td>
+                    <td>@item.PROVINCE</td>
+                    <td>@item.ADDRESS</td>
+                    <td>@item.STATUS</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <!-- DataTables -->
+    <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
+
+    <script type="text/JavaScript">
+        $(document).ready(function () {
+            // check file is selected.
+            $("#btnSave").click(function (e) {
+                var fileName = $("#btnFile").val();
+                if (fileName == '') {
+                    alert("Please select file.")
+                    return false;
+                }
+                return true;
+            });
+            // Set order list table
+            $('#orders').DataTable({
+                "paging": false,
+                "ordering": false,
+                "info": false
+            });
+        });
+    </script>
+}

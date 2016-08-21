@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://webservice.address.nplus.doortodoor.co.kr/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="AddressSearchWSImplService" targetNamespace="http://webservice.address.nplus.doortodoor.co.kr/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://address.doortodoor.co.kr:80/address/address_webservice.korex?xsd=1" namespace="http://webservice.address.nplus.doortodoor.co.kr/" />
+    </xsd:schema>
+  </types>
+  <message name="getAddressInformation">
+    <part name="parameters" element="tns:getAddressInformation" />
+  </message>
+  <message name="getAddressInformationResponse">
+    <part name="parameters" element="tns:getAddressInformationResponse" />
+  </message>
+  <message name="getAddressInformationByValue">
+    <part name="parameters" element="tns:getAddressInformationByValue" />
+  </message>
+  <message name="getAddressInformationByValueResponse">
+    <part name="parameters" element="tns:getAddressInformationByValueResponse" />
+  </message>
+  <message name="getAddressInformationByValue2">
+    <part name="parameters" element="tns:getAddressInformationByValue2" />
+  </message>
+  <message name="getAddressInformationByValue2Response">
+    <part name="parameters" element="tns:getAddressInformationByValue2Response" />
+  </message>
+  <message name="getAddressInformationByValue3">
+    <part name="parameters" element="tns:getAddressInformationByValue3" />
+  </message>
+  <message name="getAddressInformationByValue3Response">
+    <part name="parameters" element="tns:getAddressInformationByValue3Response" />
+  </message>
+  <portType name="AddressSearchWSImpl">
+    <operation name="getAddressInformation">
+      <input wsam:Action="http://webservice.address.nplus.doortodoor.co.kr/AddressSearchWSImpl/getAddressInformationRequest" message="tns:getAddressInformation" />
+      <output wsam:Action="http://webservice.address.nplus.doortodoor.co.kr/AddressSearchWSImpl/getAddressInformationResponse" message="tns:getAddressInformationResponse" />
+    </operation>
+    <operation name="getAddressInformationByValue">
+      <input wsam:Action="http://webservice.address.nplus.doortodoor.co.kr/AddressSearchWSImpl/getAddressInformationByValueRequest" message="tns:getAddressInformationByValue" />
+      <output wsam:Action="http://webservice.address.nplus.doortodoor.co.kr/AddressSearchWSImpl/getAddressInformationByValueResponse" message="tns:getAddressInformationByValueResponse" />
+    </operation>
+    <operation name="getAddressInformationByValue2">
+      <input wsam:Action="http://webservice.address.nplus.doortodoor.co.kr/AddressSearchWSImpl/getAddressInformationByValue2Request" message="tns:getAddressInformationByValue2" />
+      <output wsam:Action="http://webservice.address.nplus.doortodoor.co.kr/AddressSearchWSImpl/getAddressInformationByValue2Response" message="tns:getAddressInformationByValue2Response" />
+    </operation>
+    <operation name="getAddressInformationByValue3">
+      <input wsam:Action="http://webservice.address.nplus.doortodoor.co.kr/AddressSearchWSImpl/getAddressInformationByValue3Request" message="tns:getAddressInformationByValue3" />
+      <output wsam:Action="http://webservice.address.nplus.doortodoor.co.kr/AddressSearchWSImpl/getAddressInformationByValue3Response" message="tns:getAddressInformationByValue3Response" />
+    </operation>
+  </portType>
+  <binding name="AddressSearchWSImplPortBinding" type="tns:AddressSearchWSImpl">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="getAddressInformation">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getAddressInformationByValue">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getAddressInformationByValue2">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getAddressInformationByValue3">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="AddressSearchWSImplService">
+    <port name="AddressSearchWSImplPort" binding="tns:AddressSearchWSImplPortBinding">
+      <soap:address location="http://address.doortodoor.co.kr:80/address/address_webservice.korex" />
+    </port>
+  </service>
+</definitions>

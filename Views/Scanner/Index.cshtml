@@ -1,0 +1,104 @@
+﻿@model MangoCarrierSystem.Models.MainViewModel
+@{
+    ViewBag.Title = "Scanner Test";
+}
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.css" />
+
+<h2>LFL WEB SERVICE TEST</h2>
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <span class="label label-primary">LFL Web Service</span>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button id="btnCJAPI" class="btn btn-default" type="button" onclick="location.href='@Url.Action("GetShippingLabel", "Scanner")'">Go!</button>
+            </span>
+            <input id="inputOrderId" type="text" class="form-control" placeholder="Enter Order Key">
+        </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+<br />
+<div class="row">
+    <div class="col-md-6">
+        Enter Order Key to get shipping label.
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div>
+            <table id="orders" class="display table-vcenter" cellspacing="0" width:100%>
+                <thead>
+                    <tr>
+                        <th>AGENCY</th>
+                        <th>ZIPCODE</th>
+                        <th>ADDRESS1</th>
+                        <th>ADDRESS2</th>
+                        <th>TERMINAL</th>
+                        <th>DRIVER</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>@Model.AgencyName</td>
+                        <td>@Model.ZIPCODE</td>
+                        <td>@Model.ReceiverShortAddress1</td>
+                        <td>@Model.ReceiverShortAddress2</td>
+                        <td>@Model.MainTerminalCode - @Model.SubTerminalCode</td>
+                        <td>@Model.DriverName - @Model.DriverCode</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- DataTables -->
+    <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
+    <script type="text/JavaScript">
+        $(document).ready(function () {
+            // Set Korean Address Input Box
+            $("#inputOrderId").val('@ViewBag.KoreanAddress');
+
+            // Set order list table
+            $('#orders').DataTable({
+                "paging": false,
+                "ordering": false,
+                "info": false,
+                "bFilter": false
+            });
+        });
+    </script>
+
+    <!-- CJ Button -->
+    <script>
+        $(document).ready(function () {
+            $("#btnCJAPI").click(function () {
+                callCJAPI();
+            });
+            $(document).on("keypress", "#inputOrderId", function (e) {
+                if (e.which == 13) {
+                    callCJAPI();
+                }
+            });
+            function callCJAPI() {
+                var userInput = $("#inputOrderId").val();
+                if (userInput != "") {
+                    location.href = '@Url.Action("GetShippingLabel", "Scanner")?id=' + userInput;
+                }
+            }
+        });
+    </script>
+}
+
+
+
+

@@ -1,0 +1,104 @@
+﻿@model IList<MangoCarrierSystem.Models.MainViewModel>
+@{
+    ViewBag.Title = "Mango Carrier System";
+}
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.css" />
+
+<style>
+    .table > tbody > tr > td {
+        vertical-align: middle;
+    }
+</style>
+
+<div class="jumbotron">
+    <h1>Step 2.</h1>
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">&raquo;&nbsp;Validate address.</p>
+            <p>
+                <input type="button" value="Go!" class="btn btn-default" onclick="location.href='@Url.Action("ValidateAddress", "Home")'" />
+            </p>
+        </div>
+        <div class="col-md-2">
+            <span class="label label-primary">NEW</span><span class="badge">@ViewBag.NewCount</span>
+        </div>
+        <div class="col-md-2">
+            <span class="label label-warning">ERROR</span><span class="badge">@ViewBag.ErrorCount</span>
+        </div>
+        <div class="col-md-2">
+            <span class="label label-success">VERIFIED</span><span class="badge">@ViewBag.VerfiedCount</span>
+        </div>
+    </div>
+</div>
+
+<div>
+    <table id="orders" class="display table-vcenter" cellspacing="0" width:100%>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ORDER</th>
+                <th>ZIPCODE</th>
+                <th>PROVINCE</th>
+                <th>ADDRESS</th>
+                <th>LOCATION</th>
+                <th>TERMINAL</th>
+                <th>AGENCY</th>
+                <th>DRIVER</th>
+                <th>STATUS</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="id">@item.ID</td>
+                    <td>@item.ORDER</td>
+                    <td>@item.ZIPCODE</td>
+                    <td>@item.PROVINCE</td>
+                    <td>@item.ADDRESS</td>
+                    <td>@item.LOCATION</td>
+                    <td>@item.MainTerminalCode - @item.SubTerminalCode</td>
+                    <td>@item.AgencyName</td>
+                    <td>@item.DriverName - @item.DriverCode</td>
+                    <td class="status">@item.STATUS</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <!-- DataTables -->
+    <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
+
+    <script type="text/JavaScript">
+        $(document).ready(function () {
+            // Set order list table
+            $('#orders').DataTable({
+                "paging": false,
+                "ordering": false,
+                "info": false
+            });
+            // Error Style
+            $("td:contains('Error')").closest("tr").css("background-color", "orange");
+            // Click event for error
+            $("td").click(function () {
+                // You can edit the record only in case of Error
+                var status = $(this).closest("tr").find(".status").text();
+                if (status == "Error") {
+                    var id = $(this).closest("tr").find(".id").text();
+                    location.href = '@Url.Action("Edit", "Home")?id=' + id;
+                }
+            });
+            // Show Hand Point
+            $("td").hover(function () {
+                var status = $(this).closest("tr").find(".status").text();
+                if (status == "Error") {
+                    $(this).closest("tr").css('cursor', 'pointer');
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MangoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FULL_NAME" Type="nvarchar(max)" />
+          <Property Name="SHIPMENT_DATE" Type="datetime" />
+          <Property Name="BOX_NUMBER" Type="int" />
+          <Property Name="ORDERID" Type="nvarchar(max)" />
+          <Property Name="COUNTRY" Type="nvarchar(max)" />
+          <Property Name="ZIPCODE" Type="nvarchar(max)" />
+          <Property Name="LOCATION" Type="nvarchar(max)" />
+          <Property Name="PROVINCE" Type="nvarchar(max)" />
+          <Property Name="ADDRESS" Type="nvarchar(max)" />
+          <Property Name="WEIGHT" Type="nvarchar(max)" />
+          <Property Name="TOTALOFBOXES" Type="nvarchar(max)" />
+          <Property Name="TOTALAMOUNT" Type="nvarchar(max)" />
+          <Property Name="CURRENCY_EUR" Type="nvarchar(max)" />
+          <Property Name="VOTF" Type="nvarchar(max)" />
+          <Property Name="SERVICECODE" Type="nvarchar(max)" />
+          <Property Name="SERVICE" Type="nvarchar(max)" />
+          <Property Name="MERCHANDISE_TYPE" Type="nvarchar(max)" />
+          <Property Name="INVOICING_COMPANY" Type="nvarchar(max)" />
+          <Property Name="DEBTOR" Type="nvarchar(max)" />
+          <Property Name="STORE_TELEPHONE" Type="nvarchar(max)" />
+          <Property Name="DELIVER_TO" Type="nvarchar(max)" />
+          <Property Name="STORE" Type="nvarchar(max)" />
+          <Property Name="BOX_VOLUME" Type="nvarchar(max)" />
+          <Property Name="BOX_MEASUREMENTS" Type="nvarchar(max)" />
+          <Property Name="ID_CARD" Type="nvarchar(max)" />
+          <Property Name="COD" Type="nvarchar(max)" />
+          <Property Name="TRACKING_NR_DEVO" Type="nvarchar(max)" />
+          <Property Name="CIF_VALUE" Type="nvarchar(max)" />
+          <Property Name="CURRENCY_NON_UE" Type="nvarchar(max)" />
+          <Property Name="EMAIL" Type="nvarchar(max)" />
+          <Property Name="COMPANY" Type="nvarchar(max)" />
+          <Property Name="NAME_PACKSTATION" Type="nvarchar(max)" />
+          <Property Name="PHONE" Type="nvarchar(max)" />
+          <Property Name="STAUTS" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShippingLabel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrackingNumber" Type="nvarchar(max)" />
+          <Property Name="RecevierZipcode" Type="nvarchar(max)" />
+          <Property Name="ReceiverShortAddress1" Type="nvarchar(max)" />
+          <Property Name="ReceiverShortAddress2" Type="nvarchar(max)" />
+          <Property Name="DriverName" Type="nvarchar(max)" />
+          <Property Name="DriverCode" Type="nvarchar(max)" />
+          <Property Name="MainTerminalCode" Type="nvarchar(max)" />
+          <Property Name="SubTerminalCode" Type="nvarchar(max)" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="AgencyName" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__ShippingL__Order__412EB0B6">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="ShippingLabel" Type="Self.ShippingLabel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShippingLabel">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MangoModelStoreContainer">
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShippingLabel" EntityType="Self.ShippingLabel" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ShippingL__Order__412EB0B6" Association="Self.FK__ShippingL__Order__412EB0B6">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="ShippingLabel" EntitySet="ShippingLabel" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MangoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FULL_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SHIPMENT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="BOX_NUMBER" Type="Int32" />
+          <Property Name="ORDERID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COUNTRY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ZIPCODE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LOCATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PROVINCE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WEIGHT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TOTALOFBOXES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TOTALAMOUNT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CURRENCY_EUR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VOTF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SERVICECODE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SERVICE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MERCHANDISE_TYPE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="INVOICING_COMPANY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DEBTOR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STORE_TELEPHONE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DELIVER_TO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STORE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BOX_VOLUME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BOX_MEASUREMENTS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_CARD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TRACKING_NR_DEVO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CIF_VALUE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CURRENCY_NON_UE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COMPANY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NAME_PACKSTATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PHONE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STAUTS" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ShippingLabels" Relationship="Self.FK__ShippingL__Order__412EB0B6" FromRole="Order" ToRole="ShippingLabel" />
+        </EntityType>
+        <EntityType Name="ShippingLabel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrackingNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RecevierZipcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReceiverShortAddress1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReceiverShortAddress2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DriverName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DriverCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MainTerminalCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubTerminalCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OrderId" Type="Int32" />
+          <Property Name="AgencyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__ShippingL__Order__412EB0B6" FromRole="ShippingLabel" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK__ShippingL__Order__412EB0B6">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="ShippingLabel" Type="Self.ShippingLabel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShippingLabel">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MangoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="ShippingLabels" EntityType="Self.ShippingLabel" />
+          <AssociationSet Name="FK__ShippingL__Order__412EB0B6" Association="Self.FK__ShippingL__Order__412EB0B6">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="ShippingLabel" EntitySet="ShippingLabels" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MangoModelStoreContainer" CdmEntityContainer="MangoEntities">
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="MangoModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+                <ScalarProperty Name="SHIPMENT_DATE" ColumnName="SHIPMENT_DATE" />
+                <ScalarProperty Name="BOX_NUMBER" ColumnName="BOX_NUMBER" />
+                <ScalarProperty Name="ORDERID" ColumnName="ORDERID" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+                <ScalarProperty Name="ZIPCODE" ColumnName="ZIPCODE" />
+                <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
+                <ScalarProperty Name="PROVINCE" ColumnName="PROVINCE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+                <ScalarProperty Name="TOTALOFBOXES" ColumnName="TOTALOFBOXES" />
+                <ScalarProperty Name="TOTALAMOUNT" ColumnName="TOTALAMOUNT" />
+                <ScalarProperty Name="CURRENCY_EUR" ColumnName="CURRENCY_EUR" />
+                <ScalarProperty Name="VOTF" ColumnName="VOTF" />
+                <ScalarProperty Name="SERVICECODE" ColumnName="SERVICECODE" />
+                <ScalarProperty Name="SERVICE" ColumnName="SERVICE" />
+                <ScalarProperty Name="MERCHANDISE_TYPE" ColumnName="MERCHANDISE_TYPE" />
+                <ScalarProperty Name="INVOICING_COMPANY" ColumnName="INVOICING_COMPANY" />
+                <ScalarProperty Name="DEBTOR" ColumnName="DEBTOR" />
+                <ScalarProperty Name="STORE_TELEPHONE" ColumnName="STORE_TELEPHONE" />
+                <ScalarProperty Name="DELIVER_TO" ColumnName="DELIVER_TO" />
+                <ScalarProperty Name="STORE" ColumnName="STORE" />
+                <ScalarProperty Name="BOX_VOLUME" ColumnName="BOX_VOLUME" />
+                <ScalarProperty Name="BOX_MEASUREMENTS" ColumnName="BOX_MEASUREMENTS" />
+                <ScalarProperty Name="ID_CARD" ColumnName="ID_CARD" />
+                <ScalarProperty Name="COD" ColumnName="COD" />
+                <ScalarProperty Name="TRACKING_NR_DEVO" ColumnName="TRACKING_NR_DEVO" />
+                <ScalarProperty Name="CIF_VALUE" ColumnName="CIF_VALUE" />
+                <ScalarProperty Name="CURRENCY_NON_UE" ColumnName="CURRENCY_NON_UE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="COMPANY" ColumnName="COMPANY" />
+                <ScalarProperty Name="NAME_PACKSTATION" ColumnName="NAME_PACKSTATION" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="STAUTS" ColumnName="STAUTS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShippingLabels">
+            <EntityTypeMapping TypeName="MangoModel.ShippingLabel">
+              <MappingFragment StoreEntitySet="ShippingLabel">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TrackingNumber" ColumnName="TrackingNumber" />
+                <ScalarProperty Name="RecevierZipcode" ColumnName="RecevierZipcode" />
+                <ScalarProperty Name="ReceiverShortAddress1" ColumnName="ReceiverShortAddress1" />
+                <ScalarProperty Name="ReceiverShortAddress2" ColumnName="ReceiverShortAddress2" />
+                <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+                <ScalarProperty Name="DriverCode" ColumnName="DriverCode" />
+                <ScalarProperty Name="MainTerminalCode" ColumnName="MainTerminalCode" />
+                <ScalarProperty Name="SubTerminalCode" ColumnName="SubTerminalCode" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="AgencyName" ColumnName="AgencyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

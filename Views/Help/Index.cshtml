@@ -1,0 +1,131 @@
+﻿@model MangoCarrierSystem.Models.MainViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.css" />
+
+<h2>API SERVICE</h2>
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <span class="label label-primary">DAMU SERVICE</span>
+    </div>
+    <div class="col-md-6">
+        <span class="label label-success">CJ SERVICE</span>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" onclick="findZipcode()" type="button">FIND ZIPCODE</button>
+            </span>
+        </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+    <div class="col-md-6">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button id="btnCJAPI" class="btn btn-default" type="button" onclick="location.href='@Url.Action("CallCJAPI", "API")'">Go!</button>
+            </span>
+            <input id="inputAddress" type="text" class="form-control" placeholder="Enter Korean Address">
+        </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+<br />
+<div class="row">
+    <div class="col-md-6">
+        Please click the button to find correct address.
+    </div>
+    <div class="col-md-6">
+        Please click the button to find shipping label info.
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+    </div>
+    <div class="col-md-6">
+        <div>
+            <table id="orders" class="display table-vcenter" cellspacing="0" width:100%>
+                <thead>
+                    <tr>
+                        <th>AGENCY</th>
+                        <th>ZIPCODE</th>
+                        <th>ADDRESS1</th>
+                        <th>ADDRESS2</th>
+                        <th>TERMINAL</th>
+                        <th>DRIVER</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>@Model.AgencyName</td>
+                        <td>@Model.ZIPCODE</td>
+                        <td>@Model.ReceiverShortAddress1</td>
+                        <td>@Model.ReceiverShortAddress2</td>
+                        <td>@Model.MainTerminalCode - @Model.SubTerminalCode</td>
+                        <td>@Model.DriverName - @Model.DriverCode</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <!--autoload=false 파라미터를 이용하여 자동으로 로딩되는 것을 막습니다.-->
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=true"></script>
+    <script>
+        //load함수를 이용하여 core스크립트의 로딩이 완료된 후, 우편번호 서비스를 실행합니다.
+        function findZipcode() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+                    // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+                }
+            }).open();
+        }
+    </script>
+
+    <!-- DataTables -->
+    <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
+    <script type="text/JavaScript">
+        $(document).ready(function () {
+            // Set Korean Address Input Box
+            $("#inputAddress").val('@ViewBag.KoreanAddress');
+
+            // Set order list table
+            $('#orders').DataTable({
+                "paging": false,
+                "ordering": false,
+                "info": false,
+                "bFilter": false
+            });
+        });
+    </script>
+
+    <!-- CJ Button -->
+    <script>
+        $(document).ready(function () {
+            $("#btnCJAPI").click(function () {
+                callCJAPI();
+            });
+            $(document).on("keypress", "#inputAddress", function (e) {
+                if (e.which == 13) {
+                    callCJAPI();
+                }
+            });
+            function callCJAPI() {
+                var userInput = $("#inputAddress").val();
+                if (userInput != "")
+                {
+                    location.href = '@Url.Action("ShippingLabel", "Help")?address=' + userInput;
+                }
+            }
+        });
+    </script>
+}
+
